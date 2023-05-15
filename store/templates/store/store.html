@@ -1,0 +1,58 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/product.css' %}">{% endblock style %}
+{% block content %}
+
+<form method="GET" action="" id="search-form">
+  <input type="text" name="search" placeholder="Search by name" value="{{ search }}">
+</form>
+
+<div class="container">
+  {% if products %}
+    {% for product in products %}
+      <!-- Card content for each product -->
+      <div class="card">
+        <img src="{% static 'images/2+placeholder.png' %}" alt="{{ product.name }}">
+        <div class="card-bottom">
+          <div class="card-left">
+            <h5>{{ product.name }}</h5>
+            <p>${{ product.price }}</p>
+          </div>
+          <div class="card-right">
+            <button data-product={{ product.id }} data-action="add" class="btn">Add to Cart</button>
+            <button class="view">View</button>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <!-- Message when no products found -->
+    <p>No products found.</p>
+  {% endif %}
+</div>
+
+  
+{% endblock content %}
+
+<script>
+ 
+const searchForm = document.getElementById('search-form');
+
+
+const submitForm = (event) => {
+  event.preventDefault(); // Prevent default form submission
+
+  // Perform any additional validation or processing here
+
+  // Submit the form
+  searchForm.submit();
+};
+
+// Add an event listener to the search input to capture the Enter key press
+searchForm.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    submitForm(event);
+  }
+});
+
+</script>

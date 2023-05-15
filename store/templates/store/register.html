@@ -1,0 +1,57 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+   
+ 
+    <div class="container">
+        <div class="container-left">
+            <a href="{% url 'store' %}">Go to shop.</a>
+        </div>
+        <div class="container-right">
+            <form action="" id="my-form" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>{{field.label}}</p>
+                <p>{{field}}</p>
+                {% endfor %}
+                <button type="submit">Submit</button>
+            </form>
+            
+            <div class="message">
+                {% if messages %}
+            
+                    {% for message in messages %}
+                  <p>{{message}}</p>
+                    {% endfor %}
+            
+            
+                <a href="{% url 'register' %}">Try Again</a>
+                {% endif %}
+            </div>
+        </div>
+      
+   
+</div>
+
+
+<script>
+    const form = document.getElementById('my-form');
+    const messagesContainer = document.querySelector('.message');
+  
+    // Hide form when error messages are displayed
+    if (messagesContainer.children.length > 0) {
+      form.style.display = 'none';
+    }
+  </script>
+  
+
+</body>
+</html>
+

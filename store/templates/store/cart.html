@@ -1,0 +1,49 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block style %}  <link rel="stylesheet" href="{% static 'css/cart.css' %}">{% endblock style %}
+
+
+
+{% block content %}
+
+<div class="container">
+  {% if items %}
+      <!-- display your items here -->
+      <tr>
+        <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Order ID</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+  
+                {% for order_item in items %}
+  
+                    <td>{{ order_item.product.name }}</td>
+                    <td>{{ order_item.product.price|floatformat:2 }}</td>
+                    <td>{{ order_item.order.id }}</td>
+                    <td>{{ order_item.quantity }}</td>
+                  </tr>
+                {% endfor %}
+  
+  
+  
+  
+  
+  
+            </tbody>
+          </table>
+  
+          <a href="{% url 'checkout' %}" class="checkout">checkout</a>
+  {% else %}
+      <p>No items to show</p>
+      <a href="{% url 'store' %}">Continue Shopping</a>
+  {% endif %}
+</div>
+
+  
+{% endblock content %}

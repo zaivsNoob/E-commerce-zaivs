@@ -1,0 +1,29 @@
+# System and IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dependency and virtual environment files
+venv/
+*.pyc
+
+# Media and static files
+media/
+static/
+
+# Database files
+*.sqlite3
+*.db
+
+# Environment configuration files
+.env
+
+# Log files and debugging outputs
+*.log
+
+# Temporary files and directories
+*.tmp
+
+# Miscellaneous files
+local_settings.py

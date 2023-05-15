@@ -1,0 +1,50 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block style %}  <link rel="stylesheet" href="{% static 'css/checkout.css' %}">{% endblock style %}
+
+
+{% block content %}
+<div class="container">
+  <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Product Price</th>
+          <th>Order ID</th>
+          <th>Quantity</th>
+          <th>Item total</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+          {% for order_item in items %}
+            <tr>
+              <td>{{ order_item.product.name }}</td>
+              <td>{{ order_item.product.price|floatformat:2 }}</td>
+              <td>{{ order_item.order.id }}</td>
+              <td>{{ order_item.quantity }}</td>
+              <td>{{ order_item.get_total }}</td>
+            </tr>
+          {% endfor %}
+      
+  
+            
+  
+  
+      </tbody>
+    </table>
+
+        <h4>Total : {{total}}/-</h4>
+  
+        <form action="" method="post">
+          {% csrf_token %}
+          <h2>Shipping Information</h2>
+         {{form.as_p}}
+          <button type="submit">Submit</button>
+        </form>
+</div>
+
+
+  
+{% endblock content %}

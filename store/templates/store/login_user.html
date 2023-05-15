@@ -1,0 +1,26 @@
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock style %}
+
+
+<div class="container">
+
+    <section class="container-left">
+        <p>Log in </p>
+        <p>To buy exclusive products</p>
+        <p>new here? <a href="{% url 'register' %}">Register</a></p>
+    </section>
+
+
+    <section class="container-right">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="User name" >
+            <label for="Password">Password</label>
+            <input type="password" name="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
+    </section>
+  
+</div>
